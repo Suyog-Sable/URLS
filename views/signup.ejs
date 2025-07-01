@@ -8,6 +8,12 @@
     <style>
         body {
             margin: 0;
+            padding: 0;
+            background-color: #121212;
+        }
+
+        .signup {
+            margin: 0;
             padding: 2rem;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212;
@@ -84,20 +90,21 @@
 
 <body>
     <%- include('partials/navbar') %>
+        <div class="signup">
+            <h1>Signup</h1>
+            <form action="/user" method="post">
+                <label for="name">Full Name</label>
+                <input type="text" name="name" id="name" placeholder="Enter your name" required />
 
-        <h1>Signup</h1>
-        <form action="/user" method="post">
-            <label for="name">Full Name</label>
-            <input type="text" name="name" id="name" placeholder="Enter your name" required />
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Enter your email" required />
 
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Enter your email" required />
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Create a password" required />
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Create a password" required />
-
-            <button type="submit">Signup</button>
-        </form>
+                <button type="submit">Signup</button>
+            </form>
+        </div>
 </body>
 
 </html>

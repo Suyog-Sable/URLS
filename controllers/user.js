@@ -17,8 +17,8 @@ async function handleUserLogin(req,res){
     const user = await User.findOne({email, password});
     if(!user) return res.render("login",{
         error: "Invalid Username or Password",
+        
     });
-
     // const sessionId = uuidv4();
     // setUser(sessionId, user);
     const token = setUser(user);
@@ -26,7 +26,19 @@ async function handleUserLogin(req,res){
     return res.redirect("/");
 }
 
+async function handleUserLogout(req, res) {
+    try {
+        res.clearCookie("uid");
+        return res.redirect("/login");
+    } catch (error) {
+        console.error("Logout Error:", error);
+        return res.status(500).send("Internal Server Error during logout.");
+    }
+}
+
+
 module.exports={
     handleUserSignup,
     handleUserLogin,
+    handleUserLogout,
 };

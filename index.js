@@ -3,7 +3,7 @@ const path = require("path");
 const { connectToMongoDB } = require("./connect");
 const URL = require("./models/url")
 const cookieParser = require("cookie-parser");
-const {restrictToLoggedInUserOnly, checkAuth} = require("./middleware/auth");
+const { restrictToLoggedInUserOnly, checkAuth } = require("./middleware/auth");
 
 const urlRoute = require("./routes/url");
 const staticRoute = require('./routes/staticRouter');
@@ -20,10 +20,10 @@ app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
 app.use(express.json());
-app.use(express.urlencoded({extended:false}));
-app.use(cookieParser());    
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
-
+app.use(checkAuth);
 // app.get("/test", async (req, res) => {
 //     const allUrls = await URL.find({});
 //     return res.render('home',{
@@ -31,10 +31,17 @@ app.use(cookieParser());
 //     });
 // });
 
+// Set `res.locals.user` so it's available in all EJS templates
+app.use((req, res, next) => {
+    res.locals.user = req.user || null;
+    next();
+});
 
-app.use("/user",userRoute);
-app.use("/url",restrictToLoggedInUserOnly, urlRoute);
-app.use("/",checkAuth,staticRoute);
+app.use("/user", userRoute);
+app.use("/url", restrictToLoggedInUserOnly, urlRoute);
+app.use("/", staticRoute);
+
+
 
 //I had forgot to add /url previously in this route
 app.get("/url/:shortId", async (req, res) => {

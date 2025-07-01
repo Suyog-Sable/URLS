@@ -8,6 +8,12 @@
     <style>
         body {
             margin: 0;
+            padding: 0;
+            background-color: #121212;
+        }
+
+        .Login {
+            margin: 0;
             padding: 2rem;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: #121212;
@@ -83,17 +89,18 @@
 
 <body>
     <%- include('partials/navbar') %>
+        <div class="Login">
+            <h1>Login</h1>
+            <form action="/user/Login" method="post">
+                <label for="email">Email</label>
+                <input type="text" name="email" id="email" placeholder="Enter your email" required />
 
-        <h1>Login</h1>
-        <form action="/user/Login" method="post">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" placeholder="Enter your email" required />
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" placeholder="Enter your password" required />
 
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" placeholder="Enter your password" required />
-
-            <button type="submit">Login</button>
-        </form>
+                <button type="submit">Login</button>
+            </form>
+        </div>
 </body>
 
 </html>
