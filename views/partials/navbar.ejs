@@ -1,41 +1,45 @@
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/style.css" />
 
-<nav class="navbar">
-  <a href="/" class="logo">🚀 SnapLink</a>
+<nav class="navbar navbar-expand-md custom-navbar sticky-top">
+  <div class="container-fluid">
+    <a class="navbar-brand glow-text" href="/">SnapLink🚀</a>
 
-  <div style="display: flex; align-items: center; gap: 1.2rem;">
-    <a href="/">Home</a>
-    <a href="/about">About Us</a>
+    <button class="navbar-toggler border-success" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <% if (!user) { %>
-      <a href="/login" class="auth-btn">Login</a>
-      <a href="/signup" class="auth-btn signup-btn">Create Account</a>
-      <% } else { %>
-        <div class="user-dropdown">
-          <button id="userDropdownBtn">👤 <%= user.email.split("@")[0] %> ⏷</button>
-          <div id="userDropdown" class="user-dropdown-menu">
-            <a href="/url">🔗 Your URLs</a>
-            <a href="/user/logout" class="logout">🚪 Logout</a>
-          </div>
-        </div>
-        <% } %>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav ms-auto align-items-center gap-2">
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-pill" href="/about">About Us</a>
+        </li>
+
+        <% if (!user) { %>
+          <li class="nav-item">
+            <a class="btn btn-outline-success rounded-pill" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-success rounded-pill" href="/signup">Create Account</a>
+          </li>
+          <% } else { %>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle nav-pill" href="#" id="userDropdown" role="button"
+                data-bs-toggle="dropdown">
+                👤 <%= user.email.split("@")[0] %>
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end glass-dropdown">
+                <li><a class="dropdown-item text-light" href="/url">🔗 Your URLs</a></li>
+                <li>
+                  <hr class="dropdown-divider border-success">
+                </li>
+                <li><a class="dropdown-item text-danger" href="/user/logout">🚪 Logout</a></li>
+              </ul>
+            </li>
+            <% } %>
+      </ul>
+    </div>
   </div>
 </nav>
-
-<script>
-  const userBtn = document.getElementById("userDropdownBtn");
-  const dropdown = document.getElementById("userDropdown");
-
-  if (userBtn) {
-    userBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
-    });
-
-    document.addEventListener("click", function (event) {
-      if (!userBtn.contains(event.target) && !dropdown.contains(event.target)) {
-        dropdown.style.display = "none";
-      }
-    });
-  }
-</script>

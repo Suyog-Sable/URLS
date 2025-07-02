@@ -2,186 +2,271 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>URL Shortener</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #f0f0f0;
-        }
+    <%- include('./partials/head') %>
+        <title>URL Shortener</title>
+        <link rel="icon" href="/favicon.ico" />
+        <style>
+            * {
+                box-sizing: border-box;
+                transition: all 0.2s ease-in-out;
+            }
 
-        h1 {
-            text-align: center;
-            margin-bottom: 1rem;
-            color: #00e676;
-        }
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #121212;
+                color: #f0f0f0;
+            }
 
-        form {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-            margin: 0 auto 2rem auto;
-            gap: 0.8rem;
-        }
+            main {
+                padding: 1rem;
+                max-width: 1000px;
+                margin: 0 auto;
+            }
 
-        label {
-            font-size: 1rem;
-        }
+            h1 {
+                text-align: center;
+                margin-bottom: 1rem;
+                color: #00e676;
+                font-size: 2rem;
+            }
 
-        input[type="text"] {
-            padding: 0.6rem;
-            border: none;
-            border-radius: 5px;
-            font-size: 1rem;
-            background-color: #1e1e1e;
-            color: #fff;
-        }
+            form {
+                display: flex;
+                flex-direction: column;
+                width: 90%;
+                max-width: 400px;
+                margin: 0 auto 2rem auto;
+                gap: 0.8rem;
+                background-color: #1e1e1e;
+                padding: 1.5rem;
+                border-radius: 10px;
+                box-shadow: 0 2px 12px rgba(0, 230, 118, 0.1);
+            }
 
-        button {
-            padding: 0.6rem;
-            border: none;
-            border-radius: 5px;
-            background-color: #00e676;
-            color: #000;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+            label {
+                font-size: 1rem;
+                font-weight: 500;
+            }
 
-        button:hover {
-            background-color: #00c853;
-        }
+            input[type="text"] {
+                padding: 0.6rem;
+                border: none;
+                border-radius: 5px;
+                font-size: 1rem;
+                background-color: #2a2a2a;
+                color: #fff;
+            }
 
-        .generated-url {
-            text-align: center;
-            font-size: 1.1rem;
-            background-color: #1e1e1e;
-            padding: 1rem;
-            border-radius: 5px;
-            margin-bottom: 2rem;
-            word-break: break-word;
-            border: 1px solid #00e676;
-        }
+            input::placeholder {
+                color: #bbb;
+            }
 
-        .generated-url a {
-            color: #00e676;
-            text-decoration: none;
-        }
+            input:focus {
+                outline: 2px solid #00e676;
+            }
 
-        .back-button {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 2rem;
-        }
+            button {
+                padding: 0.6rem;
+                border: none;
+                border-radius: 5px;
+                background-color: #00e676;
+                color: #000;
+                font-weight: bold;
+                cursor: pointer;
+            }
 
-        .back-button a {
-            padding: 0.6rem 1.2rem;
-            background-color: #2e2e2e;
-            color: #00e676;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-        }
+            button:hover {
+                background-color: #00c853;
+            }
 
-        .back-button a:hover {
-            background-color: #3a3a3a;
-        }
+            .generated-url {
+                text-align: center;
+                font-size: 1.1rem;
+                background-color: #1e1e1e;
+                padding: 1rem;
+                border-radius: 10px;
+                margin: 2rem auto;
+                word-break: break-word;
+                border: 1px solid #00e676;
+                width: 90%;
+                max-width: 600px;
+                box-shadow: 0 2px 10px rgba(0, 230, 118, 0.1);
+                animation: fadeIn 0.3s ease-in;
+            }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #1e1e1e;
-            color: #ffffff;
-            font-size: 0.95rem;
-            margin-top: 1rem;
-        }
+            .generated-url a {
+                color: #00e676;
+                text-decoration: none;
+                font-weight: bold;
+            }
 
-        th,
-        td {
-            padding: 0.6rem 0.8rem;
-            text-align: center;
-            border-bottom: 1px solid #333;
-        }
+            .back-button {
+                display: flex;
+                justify-content: center;
+                margin-bottom: 2rem;
+            }
 
-        th {
-            background-color: #2e2e2e;
-            color: #00e676;
-        }
+            .back-button a {
+                padding: 0.6rem 1.2rem;
+                background-color: #2e2e2e;
+                color: #00e676;
+                border-radius: 5px;
+                text-decoration: none;
+                font-weight: bold;
+            }
 
-        tr:hover {
-            background-color: #2a2a2a;
-        }
+            .back-button a:hover {
+                background-color: #3a3a3a;
+            }
 
-        a {
-            color: #00e676;
-            text-decoration: none;
-        }
+            .table-wrapper {
+                overflow-x: auto;
+                margin: 2rem auto;
+                width: 100%;
+            }
 
-        a:hover {
-            text-decoration: underline;
-        }
-    </style>
+            table {
+                width: 100%;
+                min-width: 600px;
+                border-collapse: collapse;
+                background-color: #1e1e1e;
+                color: #ffffff;
+                font-size: 0.95rem;
+                border-radius: 10px;
+                overflow: hidden;
+                box-shadow: 0 2px 10px rgba(0, 230, 118, 0.08);
+            }
+
+            th,
+            td {
+                padding: 0.8rem 1rem;
+                text-align: center;
+                border-bottom: 1px solid #333;
+            }
+
+            th {
+                background-color: #2e2e2e;
+                color: #00e676;
+                font-size: 1rem;
+            }
+
+            tr:hover {
+                background-color: #2a2a2a;
+            }
+
+            a {
+                color: #00e676;
+                text-decoration: none;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            @media (max-width: 600px) {
+                h1 {
+                    font-size: 1.5rem;
+                }
+
+                .generated-url {
+                    font-size: 1rem;
+                    padding: 0.8rem;
+                }
+
+                .back-button a {
+                    font-size: 0.9rem;
+                    padding: 0.5rem 1rem;
+                }
+
+                table th,
+                table td {
+                    font-size: 0.85rem;
+                    padding: 0.6rem 0.5rem;
+                }
+
+                button {
+                    font-size: 0.95rem;
+                }
+
+                .generated-url button {
+                    width: 100%;
+                }
+            }
+        </style>
 </head>
 
 <body>
     <%- include('partials/navbar') %>
 
-        <h1>URL Shortener</h1>
+        <main>
+            <h1>URL Shortener</h1>
 
-        <% if (locals.id) { %>
-            <div class="generated-url">
-                URL Generated:
-                <a href="http://localhost:8001/url/<%= id %>" target="_blank">
-                    http://localhost:8001/url/<%= id %>
-                </a>
-            </div>
-            <div class="back-button">
-                <a href="/">⬅️ Go Back to Home Page</a>
-            </div>
-            <% } %>
+            <% if (locals.id) { %>
+                <div class="generated-url">
+                    URL Generated:
+                    <a href="http://localhost:8001/url/<%= id %>" target="_blank">
+                        http://localhost:8001/url/<%= id %>
+                    </a>
+                </div>
+                <div class="back-button">
+                    <a href="/">⬅️ Go Back to Home Page</a>
+                </div>
+                <% } %>
 
-                <form method="POST" action="/url">
-                    <label>Enter Your Original URL</label>
-                    <input type="text" name="url" placeholder="https://example.com" required />
-                    <button type="submit">Generate</button>
-                </form>
+                    <form method="POST" action="/url">
+                        <label for="url">Enter Your Original URL</label>
+                        <input type="text" name="url" id="url" placeholder="https://example.com" required />
+                        <button type="submit">Generate</button>
+                    </form>
 
-                <% if (locals.urls) { %>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Sr. No</th>
-                                <th>Short ID</th>
-                                <th>Redirect</th>
-                                <th>Clicks</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <% urls.forEach((url, index)=> { %>
-                                <tr>
-                                    <td>
-                                        <%= index + 1 %>
-                                    </td>
-                                    <td>
-                                        <%= url.shortId %>
-                                    </td>
-                                    <td><a href="<%= url.redirectURL %>" target="_blank">
-                                            <%= url.redirectURL %>
-                                        </a></td>
-                                    <td>
-                                        <%= url.visitHistory.length %>
-                                    </td>
-                                </tr>
-                                <% }) %>
-                        </tbody>
-                    </table>
-                    <% } %>
-
+                    <% if (locals.urls) { %>
+                        <div class="table-wrapper">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sr. No</th>
+                                        <th>Short ID</th>
+                                        <th>Redirect</th>
+                                        <th>Clicks</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% urls.forEach((url, index)=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= index + 1 %>
+                                            </td>
+                                            <td>
+                                                <%= url.shortId %>
+                                            </td>
+                                            <td><a href="<%= url.redirectURL %>" target="_blank">
+                                                    <%= url.redirectURL %>
+                                                </a></td>
+                                            <td>
+                                                <%= url.visitHistory.length %>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                        <% } %>
+        </main>
+        <%- include('partials/script') %>
 </body>
 
 </html>

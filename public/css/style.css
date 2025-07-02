@@ -1,94 +1,44 @@
-.navbar {
-  background-color: #1a1a1a;
-  height: 60px;
-  padding: 0 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #00e676;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  position: sticky;
-  top: 0;
-  z-index: 999;
-}
 
-.navbar a {
-  color: #ccc;
-  text-decoration: none;
-  margin-left: 1rem;
-}
+    .glass-navbar {
+        background-color: rgba(33, 37, 41, 0.7);
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+        transition: all 0.3s ease-in-out;
+    }
 
-.navbar a.logo {
-  color: #00e676;
-  font-weight: bold;
-  font-size: 1.5rem;
-  text-decoration: none;
-  margin-left: 0;
-}
+    .navbar-brand {
+        font-weight: 700;
+        font-size: 1.5rem;
+        letter-spacing: 1px;
+        color: #00e676 !important;
+        text-shadow: 0 0 6px rgba(0, 188, 212, 0.5);
+    }
 
-.navbar .auth-btn {
-  background-color: transparent;
-  border: 1px solid #00e676;
-  color: #00e676;
-  padding: 0.4rem 0.9rem;
-  border-radius: 20px;
-  text-decoration: none;
-  transition: all 0.3s ease;
-}
+    .nav-link {
+        font-weight: 500;
+        font-size: 1.05rem;
+        color: #f1f1f1 !important;
+        transition: color 0.2s, transform 0.2s;
+    }
 
-.navbar .auth-btn:hover {
-  background-color: #00e676;
-  color: #000;
-}
+    .nav-link:hover {
+        color: #00e676 !important;
+        transform: scale(1.05);
+    }
 
-.navbar .signup-btn {
-  background-color: #00e676;
-  color: #000;
-  font-weight: bold;
-}
+    .dropdown-menu {
+        background-color: #1f1f1f;
+        border: none;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+    }
 
-.navbar .signup-btn:hover {
-  background-color: #00c853;
-}
+    .dropdown-item {
+        color: #f0f0f0;
+    }
 
-.user-dropdown {
-  position: relative;
-}
-
-.user-dropdown button {
-  background: none;
-  border: none;
-  color: #00e676;
-  font-weight: bold;
-  font-size: 1rem;
-  cursor: pointer;
-}
-
-.user-dropdown-menu {
-  display: none;
-  position: absolute;
-  top: 120%;
-  right: 0;
-  background-color: #2e2e2e;
-  border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
-  min-width: 160px;
-  padding: 0.5rem 0;
-}
-
-.user-dropdown-menu a {
-  display: block;
-  padding: 0.7rem 1.2rem;
-  color: #ccc;
-  text-decoration: none;
-  transition: background 0.2s ease;
-}
-
-.user-dropdown-menu a:hover {
-  background-color: #3a3a3a;
-}
-
-.user-dropdown-menu a.logout {
-  color: #ff5252;
-}
+    .dropdown-item:hover {
+        background-color: #333;
+        color: #00e676;
+    }

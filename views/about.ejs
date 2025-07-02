@@ -2,87 +2,86 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Suyog Sable</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #121212;
-            color: #f0f0f0;
-        }
+    <%- include('./partials/head') %>
+        <title>About - Suyog Sable</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                background-color: #121212;
+                color: #f0f0f0;
+            }
 
-        .about-wrapper {
-            max-width: 900px;
-            margin: 60px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-
-        .about-wrapper img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            margin-bottom: 20px;
-            border: 3px solid #2c2c2c;
-        }
-
-        .about-wrapper h1 {
-            font-size: 2.5rem;
-            font-weight: 700;
-        }
-
-        .about-wrapper h4 {
-            font-size: 1.2rem;
-            font-weight: 500;
-            margin: 10px 0 30px;
-            color: #bbbbbb;
-        }
-
-        .about-wrapper p {
-            font-size: 1rem;
-            line-height: 1.6;
-            color: #ccc;
-            margin-bottom: 20px;
-        }
-
-        .btn-group {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .btn-group a {
-            text-decoration: none;
-            padding: 10px 20px;
-            background-color: #007bff;
-            border-radius: 8px;
-            color: #fff;
-            font-weight: 500;
-            transition: background 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-group a:hover {
-            background-color: #0056b3;
-            transform: translateY(-2px);
-        }
-
-        @media (max-width: 600px) {
-            .about-wrapper h1 {
-                font-size: 2rem;
+            .about-wrapper {
+                max-width: 900px;
+                margin: 60px auto;
+                padding: 0 20px;
+                text-align: center;
             }
 
             .about-wrapper img {
-                width: 100px;
-                height: 100px;
+                width: 140px;
+                height: 140px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 20px;
+                border: 3px solid #2c2c2c;
             }
-        }
-    </style>
+
+            .about-wrapper h1 {
+                font-size: 2.5rem;
+                font-weight: 700;
+            }
+
+            .about-wrapper h4 {
+                font-size: 1.2rem;
+                font-weight: 500;
+                margin: 10px 0 30px;
+                color: #bbbbbb;
+            }
+
+            .about-wrapper p {
+                font-size: 1rem;
+                line-height: 1.6;
+                color: #ccc;
+                margin-bottom: 20px;
+            }
+
+            .btn-group {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 20px;
+            }
+
+            .btn-group a {
+                text-decoration: none;
+                padding: 10px 20px;
+                background-color: #007bff;
+                border-radius: 8px;
+                color: #fff;
+                font-weight: 500;
+                transition: background 0.3s ease, transform 0.2s ease;
+            }
+
+            .btn-group a:hover {
+                background-color: #0056b3;
+                transform: translateY(-2px);
+            }
+
+            @media (max-width: 600px) {
+                .about-wrapper h1 {
+                    font-size: 2rem;
+                }
+
+                .about-wrapper img {
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+        </style>
 </head>
 
 <body>
@@ -107,7 +106,7 @@
                 <a href="mailto:suyogsable3@gmail.com">Email Me</a>
             </div>
         </div>
-
+        <%- include('partials/script') %>
 </body>
 
 </html>
