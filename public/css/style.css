@@ -1,0 +1,94 @@
+.navbar {
+  background-color: #1a1a1a;
+  height: 60px;
+  padding: 0 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #00e676;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar a {
+  color: #ccc;
+  text-decoration: none;
+  margin-left: 1rem;
+}
+
+.navbar a.logo {
+  color: #00e676;
+  font-weight: bold;
+  font-size: 1.5rem;
+  text-decoration: none;
+  margin-left: 0;
+}
+
+.navbar .auth-btn {
+  background-color: transparent;
+  border: 1px solid #00e676;
+  color: #00e676;
+  padding: 0.4rem 0.9rem;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.navbar .auth-btn:hover {
+  background-color: #00e676;
+  color: #000;
+}
+
+.navbar .signup-btn {
+  background-color: #00e676;
+  color: #000;
+  font-weight: bold;
+}
+
+.navbar .signup-btn:hover {
+  background-color: #00c853;
+}
+
+.user-dropdown {
+  position: relative;
+}
+
+.user-dropdown button {
+  background: none;
+  border: none;
+  color: #00e676;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.user-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 120%;
+  right: 0;
+  background-color: #2e2e2e;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6);
+  min-width: 160px;
+  padding: 0.5rem 0;
+}
+
+.user-dropdown-menu a {
+  display: block;
+  padding: 0.7rem 1.2rem;
+  color: #ccc;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+
+.user-dropdown-menu a:hover {
+  background-color: #3a3a3a;
+}
+
+.user-dropdown-menu a.logout {
+  color: #ff5252;
+}

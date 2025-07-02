@@ -18,4 +18,9 @@ router.get('/signup', async (req, res) => {
 router.get('/login', async (req, res) => {
     return res.render("login");
 });
+
+router.get('/about', (req, res) => {
+  res.render('about', { user: req.user || null });
+});
+
 module.exports = router;

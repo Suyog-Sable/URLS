@@ -40,6 +40,7 @@ app.use((req, res, next) => {
 app.use("/user", userRoute);
 app.use("/url", restrictToLoggedInUserOnly, urlRoute);
 app.use("/", staticRoute);
+app.use(express.static(path.resolve('./public')));
 
 
 
