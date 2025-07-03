@@ -17,9 +17,10 @@
             <% if (locals.id) { %>
                 <div class="generated-url">
                     URL Generated:
-                    <a href="http://localhost:8001/url/<%= id %>" target="_blank">
-                        http://localhost:8001/url/<%= id %>
+                    <a href="<%= fullUrl %>" target="_blank">
+                        <%= fullUrl %>
                     </a>
+
                 </div>
                 <div class="back-button">
                     <a href="/">⬅️ Go Back to Home Page</a>
@@ -65,8 +66,8 @@
                         </div>
                         <% } %>
         </main>
-         <%- include('./partials/footer') %>
-        <%- include('partials/script') %>
+        <%- include('./partials/footer') %>
+            <%- include('partials/script') %>
 </body>
 
 </html>
