@@ -32,15 +32,13 @@
                 👤 <%= user.email.split("@")[0] %>
               </a>
               <ul class="dropdown-menu dropdown-menu-end glass-dropdown">
-                <li><a class="dropdown-item text-light" href="/url">🔗 Your URLs</a></li>
-                <li>
-                  <hr class="dropdown-divider border-success">
-                </li>
-                <li><a class="dropdown-item text-danger" href="/user/logout">🚪 Logout</a></li>
-              </ul>
+                <hr class="dropdown-divider border-success">
             </li>
-            <% } %>
+            <li><a class="dropdown-item text-danger" href="/user/logout">🚪 Logout</a></li>
       </ul>
+      </li>
+      <% } %>
+        </ul>
     </div>
   </div>
 </nav>

@@ -2,15 +2,28 @@ const {v4: uuidv4} = require('uuid')
 const User = require('../models/user')
 const{setUser} = require('../services/auth')
 
-async function handleUserSignup(req,res){
-    const {name, email, password}= req.body;
-    await User.create({
-        name,
-        email,
-        password,
-    });
-    return res.redirect("/");
+async function handleUserSignup(req, res) {
+    const { name, email, password } = req.body;
+
+    try {
+        await User.create({ name, email, password });
+
+        return res.redirect("/login");
+    } catch (err) {
+        if (err.code === 11000) {
+            // Duplicate email
+            return res.render("signup", {
+                error: "Email already exists. Please log in instead.",
+            });
+        }
+
+        console.error("Signup Error:", err);
+        return res.status(500).render("signup", {
+            error: "Something went wrong. Please try again.",
+        });
+    }
 }
+
 
 async function handleUserLogin(req,res){
     const {email, password}= req.body;
